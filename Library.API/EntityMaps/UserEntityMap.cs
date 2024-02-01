@@ -11,7 +11,7 @@ namespace Library.API.EntityMaps
             builder.HasKey(_ => _.Id);
             builder.Property(_=>_.Id).ValueGeneratedOnAdd();
             builder.Property(_ => _.Name).HasColumnType("nvarchar").HasMaxLength(50);
-            builder.Property(_ => _.Email).HasColumnType("varchar").HasMaxLength(50);
+            builder.Property(_ => _.Email).HasColumnType("nvarchar").HasMaxLength(50);
             builder.Property(_ => _.CreateAt).HasColumnType("datetime").HasMaxLength(50).IsRequired();
 
 

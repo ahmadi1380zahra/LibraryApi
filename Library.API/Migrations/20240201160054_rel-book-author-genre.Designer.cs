@@ -4,6 +4,7 @@ using Library.API;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.API.Migrations
 {
     [DbContext(typeof(EFDataContext))]
-    partial class EFDataContextModelSnapshot : ModelSnapshot
+    [Migration("20240201160054_rel-book-author-genre")]
+    partial class relbookauthorgenre
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -113,32 +116,6 @@ namespace Library.API.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Library.API.Models.UserRentBook", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsBack")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserRentBook");
-                });
-
             modelBuilder.Entity("Library.API.Models.Book", b =>
                 {
                     b.HasOne("Library.API.Models.Author", "Author")
@@ -158,43 +135,14 @@ namespace Library.API.Migrations
                     b.Navigation("Genre");
                 });
 
-            modelBuilder.Entity("Library.API.Models.UserRentBook", b =>
-                {
-                    b.HasOne("Library.API.Models.Book", "Book")
-                        .WithMany("UserRentBooks")
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Library.API.Models.User", "User")
-                        .WithMany("UserRentBooks")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Book");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Library.API.Models.Author", b =>
                 {
                     b.Navigation("Books");
                 });
 
-            modelBuilder.Entity("Library.API.Models.Book", b =>
-                {
-                    b.Navigation("UserRentBooks");
-                });
-
             modelBuilder.Entity("Library.API.Models.Genre", b =>
                 {
                     b.Navigation("Books");
-                });
-
-            modelBuilder.Entity("Library.API.Models.User", b =>
-                {
-                    b.Navigation("UserRentBooks");
                 });
 #pragma warning restore 612, 618
         }

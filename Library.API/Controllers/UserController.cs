@@ -1,5 +1,7 @@
-﻿using Library.API.DTOs;
-using Library.API.Models;
+﻿using Library.API.Models;
+
+using Library.API.Services.Users;
+using Library.API.Services.Users.UserDto;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library.API.Controllers
@@ -8,50 +10,35 @@ namespace Library.API.Controllers
     [Route("api/user")]
     public class UserController: ControllerBase
     {
-        private readonly EFDataContext _context;
-        public UserController(EFDataContext context)
-        {
-            _context = context;
-        }
+
+        UserService _userService = new UserService();
+
         [HttpPost("add-user")]
-        public void AddUser([FromBody] UserDto dto)
+        public void AddUser([FromBody] AddUserDto dto)
         {
-            var user = new User();
-            user.Name = dto.Name;
-            user.Email = dto.Email;
-            user.CreateAt= DateTime.UtcNow;
-            _context.Users.Add(user);
-            _context.SaveChanges();
+            _userService.AddUser(dto);
+        }
+        [HttpPost("add-user-rent-book")]
+        public void AddUserRentBook([FromBody] UserAddRentBookDto dto)
+        {
+            _userService.AddUserRentBook(dto);
         }
         [HttpPatch("update-user/{id}")]
-        public void UpdateUser([FromRoute]int id, [FromBody] UserDto dto)
+        public void UpdateUser([FromRoute] int id, [FromBody] UpdateUserDto dto)
         {
-            var user=_context.Users.FirstOrDefault(x => x.Id == id);
-            if (user is null)
-            {
-                throw new Exception("user not found");
-            }
-            user.Name=dto.Name; 
-            user.Email=dto.Email;
-            _context.Users.Update(user);
-            _context.SaveChanges();
+          _userService.UpdateUser(id, dto); 
         }
-        [HttpDelete("delete-user")]
-        public void DeleteUser([FromQuery]int id) 
+        [HttpDelete("delete-user/{id}")]
+        public void DeleteUser([FromRoute] int id)
         {
-            var user = _context.Users.FirstOrDefault(x => x.Id == id);
-            if (user is null)
-            {
-                throw new Exception("user not found");
-            }
-            _context.Users.Remove(user);
-            _context.SaveChanges();
+         _userService.DeleteUser(id);
         }
         [HttpGet("get-user")]
-        public List<User> GetUsers([FromQuery]string name) 
+        public List<GetUserDto> GetUsersByName([FromQuery] GetUserFilterDto filterDto)
         {
-            return _context.Users.Where(_=>_.Name.Contains(name)).ToList();
+            return _userService.GetUsersByName(filterDto);
         }
-
+        //[HttpGet("get-user-rent-books")]
+        //public
     }
 }

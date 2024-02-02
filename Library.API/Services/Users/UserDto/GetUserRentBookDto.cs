@@ -2,7 +2,7 @@
 {
     public class GetUserRentBookDto
     {
-        public bool IsBack { get; set; }
-        public int BookId { get; set; }
+        public string Status { get; set; }
+        public string BookName { get; set; }
     }
 }

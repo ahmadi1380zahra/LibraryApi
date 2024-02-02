@@ -62,20 +62,24 @@ namespace Library.API.Services.Users
             return users;
 
         }
-        //public List<GetUserRentBookDto> GetUserRentBooks(int userId){
-        //    var user = _context.Users.Find(userId);
-        //    if(user is null)
-        //    {
-        //        throw new Exception("user not found");
-        //    }
-        //    var rentUserBooks = user.UserRentBooks.ToList();
-        //    List<GetUserRentBookDto> userRents= rentUserBooks.Select(userRent =>new GetUserRentBookDto
-        //    {
-                
-        //    }).ToList();
-        //}
+        public List<GetUserRentBookDto> GetUserRentBooks(int userId)
+        {
+            var user = _context.Users.Find(userId);
+            if (user is null)
+            {
+                throw new Exception("user not found");
+            }
+            var rentUserBooks = _context.Set<UserRentBook>().Where(_=>_.UserId==userId);
+            List<GetUserRentBookDto> userRents = rentUserBooks.Select(userRent => new GetUserRentBookDto
+            {
+                BookName=userRent.Book.Name,
+                Status=(userRent.IsBack?"Before":"already")
 
-         
+            }).ToList();
+            return userRents;
+        }
+
+
         public void AddUserRentBook(UserAddRentBookDto dto)
         {
             var user = _context.Users.FirstOrDefault(_=>_.Name==dto.UserName);
@@ -89,7 +93,7 @@ namespace Library.API.Services.Users
                 throw new Exception("book not found");
             }
             var bookRentCount = _context.Set<UserRentBook>().Count(_ => _.UserId == user.Id && _.IsBack==false);
-            if (bookRentCount > 4)
+            if (bookRentCount == 4)
             {
                 throw new Exception("this user cant have more than 4 book to rent");
             }
@@ -110,6 +114,18 @@ namespace Library.API.Services.Users
             _context.SaveChanges();
 
         }
-        
+        public void UpdateUserRentBook(UpdateUserRentBookDto dto)
+        {
+            var userRentBook=_context.Set<UserRentBook>().FirstOrDefault(_=>_.UserId==dto.UserId && _.BookId==dto.BookId);
+            if (userRentBook is null)
+            {
+                throw new Exception("wrong info!!!");
+            }
+            userRentBook.IsBack = true;
+            var book=_context.Books.Find(dto.BookId);
+            book.Stock++;
+            _context.SaveChanges();
+        }
     }
+   
 }

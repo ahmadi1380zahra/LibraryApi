@@ -23,6 +23,11 @@ namespace Library.API.Controllers
         {
             _userService.AddUserRentBook(dto);
         }
+        [HttpPatch("user-give-back-rent-book/")]
+        public void UpdateUserRentBooks([FromBody] UpdateUserRentBookDto dto)
+        {
+            _userService.UpdateUserRentBook(dto);
+        }
         [HttpPatch("update-user/{id}")]
         public void UpdateUser([FromRoute] int id, [FromBody] UpdateUserDto dto)
         {
@@ -38,7 +43,10 @@ namespace Library.API.Controllers
         {
             return _userService.GetUsersByName(filterDto);
         }
-        //[HttpGet("get-user-rent-books")]
-        //public
+        [HttpGet("get-user-rent-books")]
+        public List<GetUserRentBookDto> GetUserRentBooks([FromQuery] int userId)
+        {
+          return  _userService.GetUserRentBooks(userId);
+        }
     }
 }

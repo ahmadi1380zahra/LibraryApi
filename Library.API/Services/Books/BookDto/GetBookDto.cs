@@ -7,5 +7,6 @@
         public string GenreTitle { get; set; }
         public DateTime PublishDate { get; set; }
         public int Stock { get; set; }
+        public int RentStock { get; set; }
     }
 }

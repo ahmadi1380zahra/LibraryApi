@@ -60,6 +60,7 @@ namespace Library.API.Services.Books
                 AuthorName = book.Author.FullName,
                 PublishDate = book.PublishDate,
                 Stock=book.Stock,
+                RentStock=_context.Set<UserRentBook>().Count(_=>_.BookId==book.Id && _.IsBack==false),
                 GenreTitle = book.Genre.Title,
             }).ToList();
             return books;

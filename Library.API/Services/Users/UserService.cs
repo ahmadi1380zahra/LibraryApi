@@ -92,7 +92,8 @@ namespace Library.API.Services.Users
             {
                 throw new Exception("book not found");
             }
-            var bookRentCount = _context.Set<UserRentBook>().Count(_ => _.UserId == user.Id && _.IsBack==false);
+            var bookRentCount = _context.Set<UserRentBook>()
+                .Count(_ => _.UserId == user.Id && _.IsBack==false);
             if (bookRentCount == 4)
             {
                 throw new Exception("this user cant have more than 4 book to rent");
@@ -116,8 +117,8 @@ namespace Library.API.Services.Users
         }
         public void UpdateUserRentBook(UpdateUserRentBookDto dto)
         {
-            var userRentBook=_context.Set<UserRentBook>().FirstOrDefault(_=>_.UserId==dto.UserId && _.BookId==dto.BookId);
-            if (userRentBook is null)
+            var userRentBook=_context.Set<UserRentBook>().FirstOrDefault(_=>_.UserId==dto.UserId && _.BookId==dto.BookId && _.IsBack==false);
+            if (userRentBook is null )
             {
                 throw new Exception("wrong info!!!");
             }

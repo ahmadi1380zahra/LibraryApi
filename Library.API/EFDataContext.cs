@@ -15,9 +15,9 @@ namespace Library.API
             optionsBuilder.UseSqlServer("Server=.;Database=LibraryAPI;User ID = sa; Password = 123;TrustServerCertificate = True;");
 
         }
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.ApplyConfigurationsFromAssembly(typeof(EFDataContext).Assembly);
-        //}
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(EFDataContext).Assembly);
+        }
     }
 }

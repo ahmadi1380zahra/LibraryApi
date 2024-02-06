@@ -6,7 +6,7 @@ namespace Library.API.Services.Users.UserDto
     {
       
         public string Name { get; set; }
-     
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
     }

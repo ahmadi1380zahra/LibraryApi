@@ -11,14 +11,24 @@ namespace Library.API.Services.Books
         {
             var book = new Book();
             book.Name = dto.Name;
-            book.AuthorId = dto.AuthorId;
+            var genre = _context.Genres.Find(dto.GenreId);
+            if (genre == null)
+            {
+                throw new Exception("not valid genre");
+            }
             book.GenreId = dto.GenreId;
+            var author = _context.Authors.Find(dto.AuthorId);
+            if (author == null)
+            {
+                throw new Exception("not valid author");
+            }
+            book.AuthorId = dto.AuthorId;
             book.PublishDate = dto.PublishDate;
             book.Stock = dto.Stock;
             _context.Books.Add(book);
             _context.SaveChanges();
         }
-        public void UpdateBook(int id,UpdateBookDto dto) 
+        public void UpdateBook(int id, UpdateBookDto dto)
         {
             var book = _context.Books.Find(id);
             if (book is null)
@@ -26,7 +36,17 @@ namespace Library.API.Services.Books
                 throw new Exception("book not found");
             }
             book.Name = dto.Name;
+            var author = _context.Authors.Find(dto.AuthorId);
+            if (author == null)
+            {
+                throw new Exception("not valid author");
+            }
             book.AuthorId = dto.AuthorId;
+            var genre = _context.Genres.Find(dto.GenreId);
+            if (genre == null)
+            {
+                throw new Exception("not valid genre");
+            }
             book.GenreId = dto.GenreId;
             book.Stock = dto.Stock;
             book.PublishDate = dto.PublishDate;
@@ -45,7 +65,7 @@ namespace Library.API.Services.Books
         }
         public List<GetBookDto> GetBook(GetBookFilterDto filterDto)
         {
-            IQueryable <Book> query=_context.Books;
+            IQueryable<Book> query = _context.Books;
             if (!string.IsNullOrWhiteSpace(filterDto.Name))
             {
                 query = query.Where(_ => _.Name.Contains(filterDto.Name));
@@ -59,8 +79,8 @@ namespace Library.API.Services.Books
                 Name = book.Name,
                 AuthorName = book.Author.FullName,
                 PublishDate = book.PublishDate,
-                Stock=book.Stock,
-                RentStock=_context.Set<UserRentBook>().Count(_=>_.BookId==book.Id && _.IsBack==false),
+                Stock = book.Stock,
+                RentStock = _context.Set<UserRentBook>().Count(_ => _.BookId == book.Id && _.IsBack == false),
                 GenreTitle = book.Genre.Title,
             }).ToList();
             return books;

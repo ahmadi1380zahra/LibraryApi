@@ -41,7 +41,19 @@ namespace Library.API.Services.Users
             {
                 throw new Exception("user not found");
             }
+            var IsRentUser = _context.Set<UserRentBook>().Any(x => x.UserId == id);
+            if (IsRentUser == true)
+            {
+                var userRentedBooks = _context.Set<UserRentBook>().Where(_ => _.UserId == id);
+                foreach (var userRentBook in userRentedBooks)
+                {
+                    _context.Set<UserRentBook>().Remove(userRentBook);
+                }
+
+            }
+
             _context.Users.Remove(user);
+
             _context.SaveChanges();
         }
         public List<GetUserDto> GetUsersByName(GetUserFilterDto filterDto)
@@ -69,11 +81,11 @@ namespace Library.API.Services.Users
             {
                 throw new Exception("user not found");
             }
-            var rentUserBooks = _context.Set<UserRentBook>().Where(_=>_.UserId==userId);
+            var rentUserBooks = _context.Set<UserRentBook>().Where(_ => _.UserId == userId);
             List<GetUserRentBookDto> userRents = rentUserBooks.Select(userRent => new GetUserRentBookDto
             {
-                BookName=userRent.Book.Name,
-                Status=(userRent.IsBack?"Before":"already")
+                BookName = userRent.Book.Name,
+                Status = (userRent.IsBack ? "Before" : "already")
 
             }).ToList();
             return userRents;
@@ -82,7 +94,7 @@ namespace Library.API.Services.Users
 
         public void AddUserRentBook(UserAddRentBookDto dto)
         {
-            var user = _context.Users.FirstOrDefault(_=>_.Name==dto.UserName);
+            var user = _context.Users.FirstOrDefault(_ => _.Name == dto.UserName);
             if (user is null)
             {
                 throw new Exception("user not found");
@@ -93,12 +105,12 @@ namespace Library.API.Services.Users
                 throw new Exception("book not found");
             }
             var bookRentCount = _context.Set<UserRentBook>()
-                .Count(_ => _.UserId == user.Id && _.IsBack==false);
+                .Count(_ => _.UserId == user.Id && _.IsBack == false);
             if (bookRentCount == 4)
             {
                 throw new Exception("this user cant have more than 4 book to rent");
             }
-            if (book.Stock<=0)
+            if (book.Stock <= 0)
             {
                 throw new Exception("we are out of stock choose anothor book");
 
@@ -117,16 +129,16 @@ namespace Library.API.Services.Users
         }
         public void UpdateUserRentBook(UpdateUserRentBookDto dto)
         {
-            var userRentBook=_context.Set<UserRentBook>().FirstOrDefault(_=>_.UserId==dto.UserId && _.BookId==dto.BookId && _.IsBack==false);
-            if (userRentBook is null )
+            var userRentBook = _context.Set<UserRentBook>().FirstOrDefault(_ => _.UserId == dto.UserId && _.BookId == dto.BookId && _.IsBack == false);
+            if (userRentBook is null)
             {
                 throw new Exception("wrong info!!!");
             }
             userRentBook.IsBack = true;
-            var book=_context.Books.Find(dto.BookId);
+            var book = _context.Books.Find(dto.BookId);
             book.Stock++;
             _context.SaveChanges();
         }
     }
-   
+
 }

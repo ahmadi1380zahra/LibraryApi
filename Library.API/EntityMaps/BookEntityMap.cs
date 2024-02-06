@@ -8,13 +8,20 @@ namespace Library.API.EntityMaps
     {
         public void Configure(EntityTypeBuilder<Book> builder)
         {
-            builder.HasKey(_ => _.Id);
+            builder.HasKey(x => x.Id);
             builder.Property(_ => _.Id).ValueGeneratedOnAdd();
-            builder.Property(_ => _.Name).HasColumnType("nvarchar").HasMaxLength(50).IsRequired();
-            builder.Property(_ => _.PublishDate).HasColumnType("datetime").HasMaxLength(50).IsRequired();
-            builder.Property(_ => _.Stock);
+            builder.Property(_ => _.Name).HasMaxLength(50).IsRequired();
+            builder.Property(_ => _.PublishDate).IsRequired();
+            builder.Property(_ => _.Stock).IsRequired();
+
+            builder.HasOne(_ => _.Genre)
+               .WithMany(_ => _.Books)
+               .HasForeignKey(_ => _.GenreId)
+               .IsRequired();
+            builder.HasOne(_ => _.Author)
+            .WithMany(_ => _.Books)
+            .HasForeignKey(_ => _.AuthorId)
+            .IsRequired();
         }
     }
-
-
 }

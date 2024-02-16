@@ -1,0 +1,12 @@
+C:\Users\zizig\source\repos\Library.API\Taav.Contracts\bin\Debug\net8.0\Taav.Contracts.deps.json
+C:\Users\zizig\source\repos\Library.API\Taav.Contracts\bin\Debug\net8.0\Taav.Contracts.dll
+C:\Users\zizig\source\repos\Library.API\Taav.Contracts\bin\Debug\net8.0\Taav.Contracts.pdb
+C:\Users\zizig\source\repos\Library.API\Taav.Contracts\obj\Debug\net8.0\Taav.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zizig\source\repos\Library.API\Taav.Contracts\obj\Debug\net8.0\Taav.Contracts.AssemblyInfoInputs.cache
+C:\Users\zizig\source\repos\Library.API\Taav.Contracts\obj\Debug\net8.0\Taav.Contracts.AssemblyInfo.cs
+C:\Users\zizig\source\repos\Library.API\Taav.Contracts\obj\Debug\net8.0\Taav.Contracts.csproj.CoreCompileInputs.cache
+C:\Users\zizig\source\repos\Library.API\Taav.Contracts\obj\Debug\net8.0\Taav.Contracts.sourcelink.json
+C:\Users\zizig\source\repos\Library.API\Taav.Contracts\obj\Debug\net8.0\Taav.Contracts.dll
+C:\Users\zizig\source\repos\Library.API\Taav.Contracts\obj\Debug\net8.0\refint\Taav.Contracts.dll
+C:\Users\zizig\source\repos\Library.API\Taav.Contracts\obj\Debug\net8.0\Taav.Contracts.pdb
+C:\Users\zizig\source\repos\Library.API\Taav.Contracts\obj\Debug\net8.0\ref\Taav.Contracts.dll

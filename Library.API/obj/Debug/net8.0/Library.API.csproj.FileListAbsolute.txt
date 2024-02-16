@@ -135,3 +135,11 @@ C:\Users\zizig\source\repos\Library.API\Library.API\bin\Debug\net8.0\runtimes\wi
 C:\Users\zizig\source\repos\Library.API\Library.API\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\zizig\source\repos\Library.API\Library.API\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\zizig\source\repos\Library.API\Library.API\obj\Debug\net8.0\Library.API.sourcelink.json
+C:\Users\zizig\source\repos\Library.API\Library.API\bin\Debug\net8.0\Library.Entities.dll
+C:\Users\zizig\source\repos\Library.API\Library.API\bin\Debug\net8.0\Library.Persistance.EF.dll
+C:\Users\zizig\source\repos\Library.API\Library.API\bin\Debug\net8.0\Library.Services.dll
+C:\Users\zizig\source\repos\Library.API\Library.API\bin\Debug\net8.0\Taav.Contracts.dll
+C:\Users\zizig\source\repos\Library.API\Library.API\bin\Debug\net8.0\Library.Persistance.EF.pdb
+C:\Users\zizig\source\repos\Library.API\Library.API\bin\Debug\net8.0\Library.Entities.pdb
+C:\Users\zizig\source\repos\Library.API\Library.API\bin\Debug\net8.0\Library.Services.pdb
+C:\Users\zizig\source\repos\Library.API\Library.API\bin\Debug\net8.0\Taav.Contracts.pdb

@@ -1,0 +1,12 @@
+C:\Users\zizig\source\repos\Library.API\Library.Infrastructure\bin\Debug\net8.0\Library.Infrastructure.deps.json
+C:\Users\zizig\source\repos\Library.API\Library.Infrastructure\bin\Debug\net8.0\Library.Infrastructure.dll
+C:\Users\zizig\source\repos\Library.API\Library.Infrastructure\bin\Debug\net8.0\Library.Infrastructure.pdb
+C:\Users\zizig\source\repos\Library.API\Library.Infrastructure\obj\Debug\net8.0\Library.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zizig\source\repos\Library.API\Library.Infrastructure\obj\Debug\net8.0\Library.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\zizig\source\repos\Library.API\Library.Infrastructure\obj\Debug\net8.0\Library.Infrastructure.AssemblyInfo.cs
+C:\Users\zizig\source\repos\Library.API\Library.Infrastructure\obj\Debug\net8.0\Library.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\zizig\source\repos\Library.API\Library.Infrastructure\obj\Debug\net8.0\Library.Infrastructure.sourcelink.json
+C:\Users\zizig\source\repos\Library.API\Library.Infrastructure\obj\Debug\net8.0\Library.Infrastructure.dll
+C:\Users\zizig\source\repos\Library.API\Library.Infrastructure\obj\Debug\net8.0\refint\Library.Infrastructure.dll
+C:\Users\zizig\source\repos\Library.API\Library.Infrastructure\obj\Debug\net8.0\Library.Infrastructure.pdb
+C:\Users\zizig\source\repos\Library.API\Library.Infrastructure\obj\Debug\net8.0\ref\Library.Infrastructure.dll
